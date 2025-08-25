@@ -2,8 +2,14 @@ import { safelyDecodeURIComponent } from "expo-router/build/fork/getStateFromPat
 import { FlatList, Text,StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {Ionicons} from '@expo/vector-icons';
+import {useFonts} from 'expo-font'
 
 export default function Index() {
+  
+  const [fontsLoaded] = useFonts({
+  'myCustomFont':require('/Volumes/SSD/Coding/TDL/assets/fonts/SpaceMono-Regular.ttf')
+})
+
   const toDoData = [ //create an array of todos data 
     {
       id: 1,
@@ -38,7 +44,7 @@ export default function Index() {
      {
       id: 7,
       title: "Todo Test",
-      isDone: false
+      isDone: false 
     },
   ]
   return (
@@ -53,7 +59,7 @@ export default function Index() {
       keyExtractor={(item) => item.id.toString()}
       renderItem={({item}) => (
       <View>
-       <Text>{item.title}</Text>
+       <Text style = {{fontFamily:'myCustomFont'}} > {item.title}</Text>
       </View>
       )} 
       />
@@ -78,6 +84,8 @@ const styleBox = StyleSheet.create({
 
 
 
+
+
                             //quick recap//
 // SafeAreaView is used to render everything inside a safe area.
 // We have an object called toDoData, this object has id title and the isDone variables
@@ -85,3 +93,5 @@ const styleBox = StyleSheet.create({
 // so KeyExtractor is used to generate a unique key for each item in the list, which is important for performance and to avoid rendering issues.
 // renderItem is a function that renders each item you give Iterator. 
 // lastly we have view which will display the title of each todoData item.
+//in react when we use {} to write javascript code inside of it. In this case we have two {{}} for font family, because thats a javascript object inside javascript code, hence why ite.title only has one {}, TDLR you have to use {} to let react know we're writing js code and for js objects
+// <Text style = {{fontFamily:'myCustomFont'}} > {item.title}</Text>
