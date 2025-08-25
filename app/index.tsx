@@ -2,13 +2,15 @@ import { safelyDecodeURIComponent } from "expo-router/build/fork/getStateFromPat
 import { FlatList, Text,StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {Ionicons} from '@expo/vector-icons';
-import {useFonts} from 'expo-font'
+// import {useFonts} from 'expo-font'
+import { Card, CardContent } from "../components/card";;
+
 
 export default function Index() {
   
-  const [fontsLoaded] = useFonts({
-  'myCustomFont':require('/Volumes/SSD/Coding/TDL/assets/fonts/SpaceMono-Regular.ttf')
-})
+//   const [fontsLoaded] = useFonts({
+//   'myCustomFont':require('../assets/fonts/SpaceMono-Regular.ttf')
+// })
 
   const toDoData = [ //create an array of todos data 
     {
@@ -44,23 +46,21 @@ export default function Index() {
      {
       id: 7,
       title: "Todo Test",
-      isDone: false 
+      isDone: false  
     },
   ]
   return (
-    
     <SafeAreaView
-      style={styles.container}
-      >
-        <View>
-          <Ionicons name = "menu" size={24} color="black" />
-        </View>
+      style={styles.container}> 
+          <Ionicons name = "menu" size={24} color="black" />   
       <FlatList data = {toDoData} 
       keyExtractor={(item) => item.id.toString()}
       renderItem={({item}) => (
-      <View>
-       <Text style = {{fontFamily:'myCustomFont'}} > {item.title}</Text>
-      </View>
+       <Card style={{ width: 250 }}>
+        <CardContent>
+          <Text>{item.title}</Text>
+        </CardContent>
+      </Card>
       )} 
       />
       </SafeAreaView>
