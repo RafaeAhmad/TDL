@@ -52,13 +52,16 @@ export default function Index() {
   return (
     <SafeAreaView
       style={styles.container}> 
-          <Ionicons name = "menu" size={24} color="black" />   
+          <Ionicons name = "menu" size={24} color="black" />
       <FlatList data = {toDoData} 
       keyExtractor={(item) => item.id.toString()}
       renderItem={({item}) => (
-       <Card style={{ width: 250 }}>
+       <Card style={{ width: 100 }}>
         <CardContent>
+          <View style={styles.todoRow}>
           <Text>{item.title}</Text>
+          <Ionicons name="trash-outline" size={20} color="black" />
+          </View>
         </CardContent>
       </Card>
       )} 
@@ -69,19 +72,18 @@ export default function Index() {
 
 const styles = StyleSheet.create({ //this will be used in our safeAreaView, it will be our layout
   container: {
-    flex: 1,
-    paddingHorizontal: 20,
+    flex: 100,
+    paddingHorizontal: 10,
     paddingTop: 20,
     backgroundColor: "#fff",
-  }
+    
+  },
+   todoRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+   }
 });
-
-const styleBox = StyleSheet.create({ 
-  container: {
-    backgroundColor: '#f800f8',  // Light gray background color
-  }
-});
-
 
 
 
